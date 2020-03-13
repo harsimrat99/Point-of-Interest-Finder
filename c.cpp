@@ -10,7 +10,7 @@ const std::string CURL = "curl";
 
 const std::string PLACES_URL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?";
 
-const std::string API_KEY = "AIzaSyDn0JQkcfEOZzjRZMzA1mH3ETU9iN8gA1U";
+const std::string API_KEY = "API_KEY_FROM_GCP";
 
 const std::string KEY = "key=";	
 
