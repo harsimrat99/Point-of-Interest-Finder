@@ -5,7 +5,7 @@ Use it this way:
 
 Type ./a.out "Bramalea city centre"
 
-You get a picutre of bramalea city centre stored in your current directory. 
+You get a picutre of Bramalea city centre stored in your current directory. 
 
 Make sure the jq-linux binary is in the same folder as the current directory in which the a.out binary exists. To compile, make sure your development environment has curl.
 
