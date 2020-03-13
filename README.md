@@ -1,5 +1,5 @@
 # Point-of-Interest-Finder
-A command line tool that downloads the pictures of your favourite restaurant, bar, eatery, etc.
+A command line tool that downloads the pictures of your favourite restaurant, bar, eatery, etc. This tool takes advantage of the Google Places API. <href="https://developers.google.com/places/web-service/search">HERE</href>
 
 Use it this way:
 
