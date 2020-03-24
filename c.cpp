@@ -47,7 +47,7 @@ int main (int argv, char** argc) {
 	//std::cout << command << "\n";
 
 	#ifndef WIN32
-	system((command + " | jq '.candidates[].photos[].photo_reference' > ref.txt").c_str());
+	system((command + " | jq-linux64 '.candidates[].photos[].photo_reference' > ref.txt").c_str());
 	#else
 	system((command + " | jq \".candidates[].photos[].photo_reference\" > ref.txt").c_str());	
 	#endif
