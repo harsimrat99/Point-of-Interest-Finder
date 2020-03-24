@@ -5,7 +5,6 @@
 #include <regex>
 #include <ctime>
 
-
 const std::string CURL = "curl";
 
 const std::string PLACES_URL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?";
@@ -43,13 +42,17 @@ int main (int argv, char** argc) {
 
 	//std::cout << chopped << "\n";
 
-	auto command = CURL + " " + "\"" + PLACES_URL + (INPUT + chopped) + "&" + INPUT_TYPE + "&" + KEY + API_KEY + "\"";
+	auto command = CURL + " " +  FLAGS + " " + "\"" + PLACES_URL + (INPUT + chopped) + "&" + INPUT_TYPE + "&" + KEY + API_KEY + "\"";
 
 	//std::cout << command << "\n";
 
-	system((command + " | jq-linux64 '.candidates[].photos[].photo_reference' > ref.txt").c_str());
+	#ifndef WIN32
+	system((command + " | jq '.candidates[].photos[].photo_reference' > ref.txt").c_str());
+	#else
+	system((command + " | jq \".candidates[].photos[].photo_reference\" > ref.txt").c_str());	
+	#endif
 
-	std::cout << (command + " | jq-linux64 '.candidates[].photos[].photo_reference' > ref.txt").c_str() << "\n";
+	//std::cout << (command + " | jq '.candidates[].photos[].photo_reference' > ref.txt").c_str() << "\n";
 
 	std::ifstream files;
 
@@ -83,13 +86,23 @@ int main (int argv, char** argc) {
 
    			dt = asctime(gmtm);
 
-			std::string name = std::string("\"") + dt + std::to_string(xx) + ".jpeg\"";
+			std::string dtd = dt;
+
+			std::regex space(" ");	
+
+			auto chopped = std::regex_replace (dtd, space, "-");			
+
+			std::regex spaces(":");	
+
+			auto popped  = 	std::regex_replace (chopped.substr(0,24) , spaces, "-");	
+
+			std::string name = std::string("\"") + popped+ std::to_string(xx) + ".jpeg\"";
+
+			std::cout << name << "\n";
 
 			std::string POP =  (new_cmd + " > " + name);
 
-			const char* p = POP.c_str();
-
-			std::cout << p << "\n";
+			const char* p = POP.c_str();			
 
 			system (p);
 		
